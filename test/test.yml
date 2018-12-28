@@ -1,0 +1,23 @@
+runtime: go111
+
+service: default
+
+env_variables:
+  __GAE-SHIM-TEST-FOO: 'bar'
+  __GAE-SHIM-TEST-BUZ: 'qux'
+
+handlers:
+- url: /img
+  static_dir: test/img
+  secure: always
+- url: /video
+  static_dir: test/video
+  mime_type: video/mp4
+  secure: always
+  http_headers:
+    'X-TEST-HEADER-1': 'test1'
+    'X-TEST-HEADER-2': 'test2'
+- url: /.*
+  script: auto
+  secure: always
+
